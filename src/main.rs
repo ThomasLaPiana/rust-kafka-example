@@ -20,7 +20,7 @@ async fn main() -> Result<(), Box<dyn ::std::error::Error>> {
 
     let test_message = "test message";
 
-    // Send the line to Kafka on the 'chat' topic
+    // Send the line to Kafka as a producer
     write_to_stdout("Writing message to Kafka topic...\n").await?;
     let result = producer
         .send(
@@ -36,10 +36,12 @@ async fn main() -> Result<(), Box<dyn ::std::error::Error>> {
     if let Err(text) = error_text {
         write_to_stdout(&format!(
             "{}{}\n",
-            "- !failed writing to Kafka with error: ", text
+            "! failed writing to Kafka with error: ", text
         ))
         .await?;
     }
+
+    // Read the message from Kafka
 
     Ok(())
 }
