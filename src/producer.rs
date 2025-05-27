@@ -13,6 +13,7 @@ pub fn create_producer(bootstrap_server: &str) -> FutureProducer {
         .expect("Failed to create client")
 }
 
+// Publish messages to Kafka
 pub async fn send_message(
     producer: FutureProducer,
     topic: String,
